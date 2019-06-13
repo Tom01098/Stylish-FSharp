@@ -63,3 +63,24 @@ module Exercise4 =
             match trySchoolDistance h with
             | Some dist -> Some (h, dist)
             | None -> None)
+
+module Exercise5 =
+    
+    open Houses
+
+    let printHouseCostingMoreThan100k =
+        getHouses 20
+        |> Array.filter (fun h -> h.Price > 100_000m)
+        |> Array.iter (fun h ->
+            printfn "Address: %s - Price: %f" h.Address h.Price)
+
+module Exercise6 =
+    
+    open Houses
+
+    let printHouseCostingMoreThan100kDescending =
+        getHouses 20
+        |> Array.filter (fun h -> h.Price > 100_000m)
+        |> Array.sortByDescending (fun h -> h.Price)
+        |> Array.iter (fun h ->
+            printfn "Address: %s - Price: %f" h.Address h.Price)
