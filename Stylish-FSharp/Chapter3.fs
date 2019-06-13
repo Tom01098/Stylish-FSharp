@@ -1,4 +1,6 @@
-﻿module Exercise1
+﻿module Chapter3
+
+module Exercise1 =
 
     type Delivery =
     | AsBilling
@@ -33,3 +35,16 @@
             match billing.delivery with
             | ClickAndCollect id when id = store -> Some billing
             | _ -> None)
+
+module Exercise2 =
+
+    type BillingDetails = {
+        name : string
+        billing :  string
+        delivery : string option }
+
+    let countOfBillings (billings: BillingDetails seq) =
+        billings
+        |> Seq.map (fun x -> x.billing)
+        |> Seq.map Option.ofObj
+        |> Seq.sumBy Option.count

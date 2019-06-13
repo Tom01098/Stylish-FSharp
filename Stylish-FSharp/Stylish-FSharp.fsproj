@@ -6,10 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Chapter3\Exercise2.fs" />
-    <Compile Include="Chapter3\Exercise1.fs" />
-    <Compile Include="Chapter2\Exercise2.fs" />
-    <Compile Include="Chapter2\Exercise1.fs" />
+    <Compile Include="Chapter3.fs" />
+    <Compile Include="Chapter2.fs" />
   </ItemGroup>
 
 </Project>
