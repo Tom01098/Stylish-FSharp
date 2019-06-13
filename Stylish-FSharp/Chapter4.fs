@@ -36,3 +36,21 @@ module Exercise1 =
         getHouses 20
         |> Array.map (fun h ->
             sprintf "Address: %s - Price: %f" h.Address h.Price)
+
+module Exercise2 =
+    
+    open Houses
+
+    let averageHousePrice =
+        getHouses 20
+        |> Array.averageBy (fun h ->
+            h.Price)
+
+module Exercise3 =
+    
+    open Houses
+
+    let housesCostingMoreThan250k =
+        getHouses 20
+        |> Array.filter (fun h ->
+            h.Price > 250_000m)
