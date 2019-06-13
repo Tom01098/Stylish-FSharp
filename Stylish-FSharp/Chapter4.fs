@@ -83,3 +83,34 @@ module Exercise6 =
         |> Array.sortByDescending (fun h -> h.Price)
         |> Array.iter (fun h ->
             printfn "Address: %s - Price: %f" h.Address h.Price)
+
+module Exercise7 =
+    
+    open Houses
+
+    let averageHousePriceOver200k =
+        getHouses 20
+        |> Array.filter (fun h -> h.Price > 200_000m)
+        |> Array.averageBy (fun h -> h.Price)
+
+module Exercise8 =
+
+    open Houses
+
+    let firstHouseUnder100kNearSchool =
+        getHouses 20
+        |> Array.filter (fun h -> h.Price < 100_000m)
+        |> Array.pick (fun h ->
+            match trySchoolDistance h with
+            | Some dist -> Some (h, dist)
+            | None -> None)
+
+module Exercise9 =
+    
+    open Houses
+
+    let groupHousesByPriceBand =
+        getHouses 20
+        |> Array.groupBy (fun h -> priceBand h.Price)
+        |> Array.map (fun (band, hs) -> 
+            band, hs |> Array.sortBy (fun h -> h.Price))
