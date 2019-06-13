@@ -43,8 +43,7 @@ module Exercise2 =
 
     let averageHousePrice =
         getHouses 20
-        |> Array.averageBy (fun h ->
-            h.Price)
+        |> Array.averageBy (fun h -> h.Price)
 
 module Exercise3 =
     
@@ -52,5 +51,15 @@ module Exercise3 =
 
     let housesCostingMoreThan250k =
         getHouses 20
-        |> Array.filter (fun h ->
-            h.Price > 250_000m)
+        |> Array.filter (fun h -> h.Price > 250_000m)
+
+module Exercise4 =
+    
+    open Houses
+
+    let housesNearSchools =
+        getHouses 20
+        |> Array.choose (fun h ->
+            match trySchoolDistance h with
+            | Some dist -> Some (h, dist)
+            | None -> None)
