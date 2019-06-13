@@ -5,13 +5,12 @@ module Houses =
     type House = { Address : string; Price : decimal }
     type PriceBand = Cheap | Medium | Expensive
     
+    let random = System.Random(Seed = 1)
+
     let getHouses count =
-        let random = System.Random(Seed = 1)
         Array.init count (fun i -> 
             { Address = sprintf "%i Stochastic Street" (i+1)
               Price = random.Next(50_000, 500_000) |> decimal })
-
-    let random = System.Random(Seed = 1)
     
     let trySchoolDistance (house : House) =
         let dist = random.Next(10) |> double
@@ -20,7 +19,7 @@ module Houses =
         else
             None
 
-    let priceBand (price : decimal) =
+    let priceBand price =
         if price < 100_000m then 
             Cheap
         else if price < 200_000m then 

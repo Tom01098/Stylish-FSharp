@@ -3,17 +3,17 @@
 module Exercise1 =
 
     type Delivery =
-    | AsBilling
-    | Physical of string
-    | Download
-    | ClickAndCollect of int
+        | AsBilling
+        | Physical of string
+        | Download
+        | ClickAndCollect of int
 
     type BillingDetails = {
         name : string
-        billing :  string
+        billing : string
         delivery : Delivery }
 
-    let tryDeliveryLabel (billingDetails : BillingDetails) =
+    let tryDeliveryLabel billingDetails =
         match billingDetails.delivery with
         | AsBilling -> 
             billingDetails.billing |> Some
@@ -25,7 +25,7 @@ module Exercise1 =
         |> Option.map (fun address -> 
             sprintf "%s\n%s" billingDetails.name address)
 
-    let deliveryLabels (billingDetails : BillingDetails seq) =
+    let deliveryLabels billingDetails =
         billingDetails
         |> Seq.choose tryDeliveryLabel
 
@@ -40,10 +40,10 @@ module Exercise2 =
 
     type BillingDetails = {
         name : string
-        billing :  string
+        billing : string
         delivery : string option }
 
-    let countOfBillings (billings: BillingDetails seq) =
+    let countOfBillings billings=
         billings
         |> Seq.map (fun x -> x.billing)
         |> Seq.map Option.ofObj

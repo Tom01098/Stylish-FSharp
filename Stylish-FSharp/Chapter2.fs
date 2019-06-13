@@ -7,20 +7,20 @@ module Exercise1 =
     module MilesYards = 
 
         type MilesYards = 
-            private MilesYards of wholeMiles : int * yards : int
+            private MilesYards of miles : int * yards : int
 
-        let fromMilesPointYards (milesPointYards : float) : MilesYards =
-            let wholeMiles = milesPointYards |> floor |> int
-            let fraction = milesPointYards - float(wholeMiles)
+        let fromMilesPointYards milesPointYards =
+            let miles = milesPointYards |> floor |> int
+            let fraction = milesPointYards - float(miles)
             if fraction > 0.1759 then
                 raise <| ArgumentOutOfRangeException("milesPointYards", "Fractional part must be <= 0.1759")
             elif fraction < 0. then
                 raise <| ArgumentOutOfRangeException("milesPointYards", "Fractional part must be >= 0")
             let yards = fraction * 10_000. |> round |> int
-            MilesYards(wholeMiles, yards)
+            MilesYards(miles, yards)
 
-        let toDecimalMiles (MilesYards(wholeMiles, yards)) : float =
-            (float wholeMiles) + ((float yards) / 1760.)
+        let toDecimalMiles (MilesYards(miles, yards)) : float =
+            (float miles) + ((float yards) / 1760.)
 
 module Exercise2 =
 
@@ -29,7 +29,7 @@ module Exercise2 =
     module MilesChains =
 
         type MilesChains =
-            private MilesChains of wholeMiles : int * chains : int
+            private MilesChains of miles : int * chains : int
 
         let fromMilesChains (miles, chains) =
             if miles < 0 then
