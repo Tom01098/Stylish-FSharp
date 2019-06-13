@@ -10,7 +10,7 @@ module Houses =
     let getHouses count =
         Array.init count (fun i -> 
             { Address = sprintf "%i Stochastic Street" (i+1)
-              Price = random.Next(50_000, 500_000) |> decimal })
+              Price = random.Next(50_000, 100_000) |> decimal })
     
     let trySchoolDistance (house : House) =
         let dist = random.Next(10) |> double
@@ -114,3 +114,19 @@ module Exercise9 =
         |> Array.groupBy (fun h -> priceBand h.Price)
         |> Array.map (fun (band, hs) -> 
             band, hs |> Array.sortBy (fun h -> h.Price))
+
+module Array =
+
+    let inline tryAverageBy projection a =
+        if Array.length a = 0 then None
+        else a |> Array.averageBy projection |> Some
+
+module Exercise10 =
+    
+    open Houses
+
+    let averagePriceOver200k =
+        getHouses 20
+        |> Array.filter (fun h -> h.Price > 200_000m)
+        |> Array.tryAverageBy (fun h -> h.Price)
+        |> Option.defaultValue 0m
