@@ -40,3 +40,20 @@ module Exercise3 =
           { Name = "Bread Hair"; Artist = "They Might Be Giants" }
           { Name = "The Mollusk"; Artist = "Ween" } ]
         |> Set.ofList
+
+module Exercise4 =
+    
+    open System
+
+    [<Struct>]
+    type Position = {
+        X : float32
+        Y : float32
+        Z : float32
+        Time : DateTime }
+
+    let update x y z pos = 
+        { pos with 
+              X = pos.X + x; 
+              Y = pos.Y + y; 
+              Z = pos.Z + z }
