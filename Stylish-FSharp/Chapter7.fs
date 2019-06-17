@@ -28,3 +28,15 @@ module Exercise1 =
           Y = float32 i
           Z = float32 i
           Time = DateTime.Now })
+
+module Exercise3 =
+    
+    type Track = {
+        Name : string
+        Artist : string }
+        
+    let tracks =
+        [ { Name = "The Mollusk"; Artist = "Ween" }
+          { Name = "Bread Hair"; Artist = "They Might Be Giants" }
+          { Name = "The Mollusk"; Artist = "Ween" } ]
+        |> Set.ofList
