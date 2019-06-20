@@ -19,3 +19,19 @@ module Exercise2 =
             else
                 current <- current + 1
             before
+
+module Exercise3 =
+
+    let featureScale a b xMin xMax x =
+        a + ((x - xMin) * (b - a)) / (xMax - xMin)
+
+    let scale (data : seq<float>) =
+        let minX = data |> Seq.min
+        let maxX = data |> Seq.max
+        let zeroOneScale = featureScale 0. 1. minX maxX
+        data
+        |> Seq.map zeroOneScale
+
+module Exercise4 = 
+
+    let applyAll p = p |> List.reduce (>>)
