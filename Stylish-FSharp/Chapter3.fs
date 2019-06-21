@@ -43,7 +43,7 @@ module Exercise2 =
         billing : string
         delivery : string option }
 
-    let countOfBillings billings=
+    let countOfBillings billings =
         billings
         |> Seq.map (fun x -> x.billing)
         |> Seq.map Option.ofObj
