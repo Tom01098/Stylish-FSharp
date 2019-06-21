@@ -10,7 +10,7 @@ module Exercise1 =
 
     type MeterReading =
         { ReadingDate : DateTime
-          MeterValue : MeterValue}
+          MeterValue : MeterValue }
 
     let formatReading { ReadingDate = date; MeterValue = value } =
         let dateStr = date.ToShortDateString()
