@@ -5,7 +5,7 @@ module private Files =
     open System.IO
     open System.Text.RegularExpressions
 
-    let getAllFilesIn dir =
+    let getAllIn dir =
         Directory.EnumerateFiles
                       (dir, "*.*", SearchOption.AllDirectories)
 
@@ -17,18 +17,17 @@ module private FileAttributes =
     open System.IO
 
     let hasFlag flag file =
-        let info = FileInfo(file)
-        info.Attributes.HasFlag(flag)
+        FileInfo(file)
+            .Attributes
+            .HasFlag(flag)
 
 module Exercise1 = 
 
     open System.IO
     open System.Text.RegularExpressions
-    open Files
-    open FileAttributes
 
     let find pattern dir =
         let re = Regex(pattern)
-        getAllFilesIn dir
-        |> Seq.filter (nameMatches re)
-        |> Seq.filter (hasFlag FileAttributes.ReadOnly)
+        Files.getAllIn dir
+        |> Seq.filter (Files.nameMatches re)
+        |> Seq.filter (FileAttributes.hasFlag FileAttributes.ReadOnly)
